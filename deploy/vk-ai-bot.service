@@ -1,0 +1,24 @@
+[Unit]
+Description=LogicPulse VK AI Bot
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=vkbot
+Group=vkbot
+WorkingDirectory=/opt/vk-ai-bot
+EnvironmentFile=/opt/vk-ai-bot/.env
+ExecStart=/opt/vk-ai-bot/.venv/bin/python /opt/vk-ai-bot/main.py
+Restart=always
+RestartSec=5
+TimeoutStopSec=20
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/opt/vk-ai-bot/users /opt/vk-ai-bot/.vkbottle
+
+[Install]
+WantedBy=multi-user.target
+
